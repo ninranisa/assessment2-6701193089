@@ -1,8 +1,15 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "dataipk");
-$semester = $_GET['semester'];
-$sql = "DELETE FROM `indeks` WHERE semester='$semester'";
-$result = $conn->query($sql);
-echo "<script> alert('Data Sudah dihapus');</script>";
-echo "<script> location='home.php'; </script>";
+// koneksi database
+include 'koneksi.php';
+
+// menangkap data id yang di kirim dari url
+$id = $_GET['id'];
+
+
+// menghapus data dari database
+mysqli_query($koneksi,"delete from dataindeks where id='$id'");
+
+// mengalihkan halaman kembali ke index.php
+header("location:view.php");
+
 ?>

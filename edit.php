@@ -1,32 +1,46 @@
-<?php $conn = new mysqli("localhost", "root", "", "dataipk");
-$sql = "SELECT * FROM indeks WHERE semester='$_GET[semester]'";
-$result = $conn->query($sql);
-while ($row=$result->fetch_assoc()) {
-	$semester = $row['semester'];
-	$ipk = $row['ipk'];
-}
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<form method="POST" action="">
-		<label>SEMESTER</label>
-		<input type="text" name="semester" value="<?=$semester?>"><br>
-		<label>IPK</label>
-		<input type="text" name="ipk" value="<?=$ipk?>"> <br>
-		<br>
-		<input type="submit" name="submit" value="Submit">
-	</form>
-</body>
-</html>
-<?php
-if (isset($_POST['submit'])) {
-	$sql = "UPDATE `indeks` SET `semester`='$_POST[semester]',`ipk`='$_POST[ipk]' WHERE semester=$_GET[semester]";
-	$result = $conn->query($sql);
-	echo "<script> alert('Data berhasil diubah');</script>";
-	echo "<script> location='home.php'; </script>";
-}
- ?>
+<<!DOCTYPE html>
+ <html>
+ <head>
+ 	<title>StudentsIP.</title>
+ </head>
+ <body>
+
+ 	<h2>CRUD DATA MAHASISWA </h2>
+ 	<br/>
+ 	<a href="index.php">KEMBALI</a>
+ 	<br/>
+ 	<br/>
+ 	<h3>EDIT DATA MAHASISWA</h3>
+
+ 	<?php
+ 	include 'koneksi.php';
+ 	$id = $_GET['id'];
+ 	$data = mysqli_query($koneksi,"select * from dataindeks where id='$id'");
+ 	while($d = mysqli_fetch_array($data)){
+ 		?>
+ 		<form method="post" action="update.php">
+ 			<table>
+ 				<tr>
+ 					<td>Semester</td>
+ 					<td>
+ 						<input type="hidden" name="id" value="<?php echo $d['id']; ?>">
+ 						<input type="text" name="semester" value="<?php echo $d['semester']; ?>">
+ 					</td>
+ 				</tr>
+ 				<tr>
+ 					<td>IP</td>
+ 					<td><input type="number" name="ipk" value="<?php echo $d['ipk']; ?>"></td>
+ 				</tr>
+
+ 				<tr>
+ 					<td></td>
+ 					<td><input type="submit" value="SIMPAN"></td>
+ 				</tr>
+ 			</table>
+ 		</form>
+ 		<?php
+ 	}
+ 	?>
+
+ </body>
+ </html>
