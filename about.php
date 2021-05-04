@@ -26,12 +26,13 @@ html {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: 8px;
+  align: center;
 }
 
 .about-section {
   padding: 50px;
   text-align: center;
-  background-color: #474e5d;
+  background-color: #C8A2C8;
   color: white;
 }
 
@@ -76,12 +77,11 @@ html {
 <body>
 
 <div class="about-section">
-  <h1>About Us Page</h1>
-  <p>Some text about who we are and what we do.</p>
-  <p>Resize the browser window to see that this page is responsive by the way.</p>
+  <h1>About Me Page</h1>
+  <p>NINDYA RIFKA ANNISA</p>
 </div>
 
-<h2 style="text-align:center">Our Team</h2>
+<h2 style="text-align:center"></h2>
 <div class="row">
   <div class="column">
     <div class="card">
